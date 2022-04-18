@@ -3,7 +3,7 @@ import Editor from 'md-editor-rt'
 import 'md-editor-rt/lib/style.css'
 
 const DocumentEditor = () => {
-	const [text, setText] = useState('hello md-editor-rt！')
+	const [text, setText] = useState('')
 
 	return (
 		<Editor
@@ -11,6 +11,9 @@ const DocumentEditor = () => {
 			pageFullScreen
 			onChange={(modelValue) => {
 				setText(modelValue)
+			}}
+			onUploadImg={(files) => {
+				console.log(files)
 			}}
 		/>
 	)

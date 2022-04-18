@@ -1,9 +1,10 @@
 {
-  "name": "share",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^4.6.3"
-  }
+	"name": "@it/share",
+	"version": "1.0.0",
+	"private": true,
+	"main": "index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"typescript": "^4.6.3"
+	}
 }

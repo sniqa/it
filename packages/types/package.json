@@ -1,9 +1,14 @@
 {
-  "name": "types",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^4.6.3"
-  }
+	"name": "@it/types",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./src/index.ts",
+	"type": "module",
+	"license": "MIT",
+	"dependencies": {
+		"mongodb": "^4.3.1"
+	},
+	"devDependencies": {
+		"typescript": "^4.6.3"
+	}
 }

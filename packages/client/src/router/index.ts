@@ -7,6 +7,9 @@ export enum RoutePath {
 	ABOUT = 'about',
 	ROOT_ABOUT = '/about',
 
-	DOCUMENTATION = 'documentation',
-	ROOT_DOCUMENTATION = '/documentation',
+	DOCUMENT = 'document',
+	ROOT_DOCUMENT = '/document',
+
+	NET_MANAGE = 'netmanage',
+	ROOT_NET_MANAGE = '/netmanage',
 }
