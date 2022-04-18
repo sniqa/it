@@ -1,4 +1,6 @@
-import { WithId } from 'mongodb'
+interface WithId {
+	_id: string
+}
 
 interface Documentation {
 	title: string
@@ -10,4 +12,4 @@ interface Documentation {
 	author?: string
 }
 
-export type DocumentProps = WithId<Documentation>
+export type DocumentProps = WithId & Documentation

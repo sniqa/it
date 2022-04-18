@@ -12,4 +12,7 @@ export enum RoutePath {
 
 	NET_MANAGE = 'netmanage',
 	ROOT_NET_MANAGE = '/netmanage',
+
+	EDITOR = 'editor',
+	ROOT_EDITOR = '/editor',
 }

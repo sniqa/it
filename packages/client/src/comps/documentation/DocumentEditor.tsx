@@ -8,7 +8,7 @@ const DocumentEditor = () => {
 	return (
 		<Editor
 			modelValue={text}
-			pageFullScreen
+			editorClass={`flex-grow`}
 			onChange={(modelValue) => {
 				setText(modelValue)
 			}}

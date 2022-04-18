@@ -19,7 +19,7 @@ const DocumentIntroduction = (props: DocumentIntroductionProps) => {
 	}
 
 	return (
-		<Paper elevation={2} className={`border p-4 my-4 w-32rem`} onClick={onClick}>
+		<Paper elevation={2} className={`border p-4 my-4 w-full`} onClick={onClick}>
 			<section className="">{title}</section>
 			<Divider />
 			<section className="h-4rem p-2 flex-wrap">{content}</section>
