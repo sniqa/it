@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Editor from 'md-editor-rt'
 import 'md-editor-rt/lib/style.css'
+import { upload } from '../../apis/common'
 
 const DocumentEditor = () => {
 	const [text, setText] = useState('')
@@ -12,9 +13,7 @@ const DocumentEditor = () => {
 			onChange={(modelValue) => {
 				setText(modelValue)
 			}}
-			onUploadImg={(files) => {
-				console.log(files)
-			}}
+			onUploadImg={upload}
 		/>
 	)
 }

@@ -14,8 +14,9 @@ regeister({
 
 const router = new Router()
 
-// router.get('/gateway', (ctx) => gateway(ctx))
 router.post('/gateway', async (ctx) => (ctx.response.body = await gateway(ctx).catch((err) => console.log(err))))
+
+router.post('upload', async (ctx) => {})
 
 router.get('/test', (ctx) => (ctx.response.body = 'Hello, this is test of router test'))
 
