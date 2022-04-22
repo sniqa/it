@@ -2,6 +2,7 @@ import Koa from 'koa'
 import koaStatic from 'koa-static'
 import Router from 'koa-router'
 import koaBody from 'koa-body'
+import cors from 'koa-cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -10,37 +11,47 @@ const __filename = fileURLToPath(import.meta.url)
 
 const __dirname = path.dirname(__filename)
 
-const app = new Koa()
-
 const port = 8081
 
-const router = new Router()
+const imagePath = '/image'
 
-router.post(
-	'/upload',
+const staticPath = path.join(__dirname, '../public/image')
+
+const koaStaticGen = () =>
 	koaBody({
 		multipart: true,
 		formidable: {
-			uploadDir: path.join(__dirname, '../public'),
+			uploadDir: staticPath,
 			keepExtensions: true,
 			onFileBegin: () => {},
 		},
-	}),
-	async (ctx) => {
-		const { request, response } = ctx
+	})
 
-		const { files } = request
+const app = new Koa()
 
-		if (files) {
-			if (Array.isArray(files)) {
-				files[0].path
-			} else {
+app.use(cors())
+
+const router = new Router()
+
+router.post('/upload', koaStaticGen(), async (ctx) => {
+	const { request, response } = ctx
+
+	const { files, host, url, protocol } = request
+
+	const hostpath = `${protocol}://${host}${imagePath}`
+
+	if (files) {
+		const { file } = files
+
+		if (file) {
+			if (Array.isArray(file)) {
+				return (response.body = file.map((f) => ({ filepath: `${hostpath}/${path.basename(f.path)}` })))
 			}
-		}
 
-		response.body = 'ok'
+			return (response.body = { filepath: `${hostpath}/${path.basename(file.path)}` })
+		}
 	}
-)
+})
 
 app.use(router.routes())
 

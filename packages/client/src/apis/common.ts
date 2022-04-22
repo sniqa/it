@@ -1,29 +1,24 @@
-export const upload = (files: FileList) => {
-	const f = fileListToFileArray(files).map((file) => {
-		return new Promise((resolve) => {
-			const reader = new FileReader()
+const url = 'http://localhost:8081/upload'
 
-			reader.readAsArrayBuffer(file)
+const requestOptions = (body: any): RequestInit => ({
+	method: 'POST',
+	body,
+	redirect: 'follow',
+})
 
-			reader.onloadend = () => {
-				return resolve(reader.result)
-			}
-		})
-	})
-
-	const formData = new FormData()
+interface UploadRes {
+	filepath: string
 }
 
-// 将FileList转为FileArray
-const fileListToFileArray = (files: FileList): Array<File> => {
-	const len = files.length
+export const upload = async (files: FileList): Promise<UploadRes | Array<UploadRes>> => {
+	const formData = new FormData()
 
-	let tempArray: Array<File> = []
+	const fileLength = files.length
 
-	for (let i = 0; i < len; i++) {
+	for (let i = 0; i < fileLength; i++) {
 		const file = files.item(i)
-		file && tempArray.push()
+		file && formData.append('file', file)
 	}
 
-	return tempArray
+	return fetch(url, requestOptions(formData)).then((res) => res.ok && res.json())
 }

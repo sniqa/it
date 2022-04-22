@@ -6,6 +6,14 @@ import { upload } from '../../apis/common'
 const DocumentEditor = () => {
 	const [text, setText] = useState('')
 
+	const editorUpload = async (files: FileList, callBack: (urls: string[]) => void) => {
+		const res = await upload(files)
+
+		const r = Array.isArray(res) ? res.map((path) => path.filepath) : [res.filepath]
+
+		callBack(r)
+	}
+
 	return (
 		<Editor
 			modelValue={text}
@@ -13,7 +21,7 @@ const DocumentEditor = () => {
 			onChange={(modelValue) => {
 				setText(modelValue)
 			}}
-			onUploadImg={upload}
+			onUploadImg={editorUpload}
 		/>
 	)
 }
