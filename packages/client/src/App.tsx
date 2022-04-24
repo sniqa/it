@@ -9,6 +9,12 @@ import NotFound from './views/NotFound'
 
 const Documentation = lazy(() => import('./views/Documentation'))
 const DocumentEditor = lazy(() => import('./views/Editor'))
+const NetManage = lazy(() => import('./views/NetManage'))
+
+const User = lazy(() => import('./views/netManageSubpages/User'))
+const NetType = lazy(() => import('./views/netManageSubpages/NetType'))
+const Ip = lazy(() => import('./views/netManageSubpages/Ip'))
+const Plan = lazy(() => import('./views/netManageSubpages/Plan'))
 
 const App = () => {
 	return (
@@ -39,6 +45,58 @@ const App = () => {
 							</Suspense>
 						}
 					/>
+
+					{/* 网络管理 */}
+					<Route
+						path={RoutePath.NET_MANAGE}
+						element={
+							<Suspense fallback={<div>...Loading</div>}>
+								<NetManage />
+							</Suspense>
+						}
+					>
+						<Route
+							index
+							element={
+								<Suspense fallback={<div>...Loading</div>}>
+									<User />
+								</Suspense>
+							}
+						/>
+						<Route
+							path={RoutePath.USER}
+							element={
+								<Suspense fallback={<div>...Loading</div>}>
+									<User />
+								</Suspense>
+							}
+						/>
+						<Route
+							path={RoutePath.NET_TYPE}
+							element={
+								<Suspense fallback={<div>...Loading</div>}>
+									<NetType />
+								</Suspense>
+							}
+						/>
+						<Route
+							path={RoutePath.IP}
+							element={
+								<Suspense fallback={<div>...Loading</div>}>
+									<Ip />
+								</Suspense>
+							}
+						/>
+						<Route
+							path={RoutePath.PLAN}
+							element={
+								<Suspense fallback={<div>...Loading</div>}>
+									<Plan />
+								</Suspense>
+							}
+						/>
+					</Route>
+
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>

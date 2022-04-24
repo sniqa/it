@@ -1,64 +1,30 @@
-import Koa from 'koa'
-import koaStatic from 'koa-static'
-import Router from 'koa-router'
-import koaBody from 'koa-body'
-import cors from 'koa-cors'
 import path from 'path'
-import { fileURLToPath } from 'url'
+import staticServer, { __dirname } from './staticServer'
 
-// ES module __dirname
-const __filename = fileURLToPath(import.meta.url)
+const imageStaticPath = path.join(__dirname, '../public/image')
+const imageStaticServerPort = 9073
 
-const __dirname = path.dirname(__filename)
+const documentStaticPath = path.join(__dirname, '../public/document')
+const documentStaticServerPort = 9074
 
-const port = 8081
+const postPath = '/upload'
 
-const imagePath = '/image'
-
-const staticPath = path.join(__dirname, '../public/image')
-
-const koaStaticGen = () =>
-	koaBody({
-		multipart: true,
-		formidable: {
-			uploadDir: staticPath,
-			keepExtensions: true,
-			onFileBegin: () => {},
-		},
-	})
-
-const app = new Koa()
-
-app.use(cors())
-
-const router = new Router()
-
-router.post('/upload', koaStaticGen(), async (ctx) => {
-	const { request, response } = ctx
-
-	const { files, host, url, protocol } = request
-
-	const hostpath = `${protocol}://${host}${imagePath}`
-
-	if (files) {
-		const { file } = files
-
-		if (file) {
-			if (Array.isArray(file)) {
-				return (response.body = file.map((f) => ({ filepath: `${hostpath}/${path.basename(f.path)}` })))
-			}
-
-			return (response.body = { filepath: `${hostpath}/${path.basename(file.path)}` })
-		}
-	}
+// 图片静态服务器
+staticServer({
+	port: imageStaticServerPort,
+	postPath,
+	uploadDir: imageStaticPath,
+	routerPath: '/image',
+	callback: () =>
+		console.log(`image server run at localhost:${imageStaticServerPort}`),
 })
 
-app.use(router.routes())
-
-app.use(router.allowedMethods())
-
-app.use(koaStatic(path.join(__dirname, '../public')))
-
-app.listen(port)
-
-console.log(`static server run at localhost:${port}`)
+// 文档静态服务器
+staticServer({
+	port: documentStaticServerPort,
+	postPath,
+	uploadDir: documentStaticPath,
+	routerPath: '/document',
+	callback: () =>
+		console.log(`document server run at localhost:${documentStaticServerPort}`),
+})

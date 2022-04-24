@@ -15,4 +15,16 @@ export enum RoutePath {
 
 	EDITOR = 'editor',
 	ROOT_EDITOR = '/editor',
+
+	USER = 'user',
+	ROOT_USER = '/user',
+
+	NET_TYPE = 'nettype',
+	ROOT_NET_TYPE = '/nettype',
+
+	IP = 'ip',
+	ROOT_IP = '/ip',
+
+	PLAN = 'plan',
+	ROOT_PLAN = '/plan',
 }

@@ -9,7 +9,9 @@ interface SearchbarProps {
 const Searchbar = ({ onSearch }: SearchbarProps) => {
 	const [text, setText] = useState('')
 
-	const onEnter = (e: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+	const onEnter = (
+		e: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>
+	) => {
 		if (e.nativeEvent.key === 'Enter') {
 			onSearch(text)
 		}
@@ -22,7 +24,12 @@ const Searchbar = ({ onSearch }: SearchbarProps) => {
 			<OutlinedInput
 				className="bg-light-50"
 				fullWidth
-				endAdornment={<SearchIcon onClick={() => onSearch(text)} className={`cursor-pointer`} />}
+				endAdornment={
+					<SearchIcon
+						onClick={() => onSearch(text)}
+						className={`cursor-pointer`}
+					/>
+				}
 				onChange={(e) => setText(e.target.value)}
 				onKeyUp={(e) => onEnter(e)}
 			/>
