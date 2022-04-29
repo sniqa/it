@@ -6,9 +6,9 @@ interface Documentation {
 	title: string
 	content: string
 	introduction?: string
-	recycle: boolean
-	createDate: Date
-	lastModifyDate: Date
+	recycle?: boolean
+	createDate?: Date
+	lastModifyDate?: Date
 	author?: string
 }
 

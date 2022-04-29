@@ -1,20 +1,43 @@
-import Koa from 'koa'
-import bodyParser from 'koa-body'
-import cors from 'koa-cors'
-import router from './router'
+import staticServer, { __dirname } from './staticServer'
+import queryServer from './queryServer'
+import router from './router/router'
+import { 
+	QUERY_SERVER_PORT, 
+	IMAGE_STATIC_SERVER_PORT,
+	DOCUMENT_STATIC_SERVER_PORT, 
+	STATIC_SERVER_POST_PATH, 
+	IMAGE_STORE_STATIC_PATH, 
+	DOCUMENT_STORE_STATIC_PATH
+} from './serverConfig'
 
-const port = 8080
 
-const app = new Koa()
+// 请求服务器
+queryServer({
+	port: QUERY_SERVER_PORT,
+	router,
+	callback: () => console.log(`query server run at localhost:${QUERY_SERVER_PORT}`)
+	
+})
 
-app.use(cors())
 
-app.use(bodyParser())
 
-app.use(router.routes())
+// 图片静态服务器
+staticServer({
+	port: IMAGE_STATIC_SERVER_PORT,
+	postPath: STATIC_SERVER_POST_PATH,
+	uploadDir: IMAGE_STORE_STATIC_PATH,
+	routerPath: '/image',
+	callback: () =>
+		console.log(`image server run at localhost:${IMAGE_STATIC_SERVER_PORT}`),
+})
 
-app.use(router.allowedMethods())
 
-app.listen(port)
-
-console.log(`server run at http://localhost:${port}`)
+// 文档静态服务器
+staticServer({
+	port: DOCUMENT_STATIC_SERVER_PORT,
+	postPath: STATIC_SERVER_POST_PATH,
+	uploadDir: DOCUMENT_STORE_STATIC_PATH,
+	routerPath: '/document',
+	callback: () =>
+		console.log(`document server run at localhost:${DOCUMENT_STATIC_SERVER_PORT}`),
+})

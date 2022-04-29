@@ -9,6 +9,7 @@
 	"scripts": {
 		"client": "cd packages/client && vite",
 		"server": "cd packages/server && node --experimental-specifier-resolution=node --loader ts-node/esm ./src/main.ts",
-		"static": "cd packages/static-server && node --experimental-specifier-resolution=node --loader ts-node/esm ./src/main.ts"
+		"servertest": "cd packages/server && node --experimental-specifier-resolution=node --loader ts-node/esm ./src/test/index.ts"
+
 	}
 }

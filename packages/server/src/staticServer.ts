@@ -49,8 +49,6 @@ const staticServer = (info: StaticServer) => {
 			// file 为 FromData的append函数所添加的key值，是自定义值
 			const { file } = files
 
-			console.log(file)
-
 			// response.body = 'ok'
 			response.body =
 				file && Array.isArray(file)

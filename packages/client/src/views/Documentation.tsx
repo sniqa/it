@@ -6,9 +6,12 @@ import { Button, styled, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { RoutePath } from '../router'
 import { documentUpload } from '../apis/upload'
+import { _fetch } from '../apis/fetch'
+import { putDocuments } from '../store/document'
+import { fetchFiles } from '../apis/fetchFiles'
 
 const Documentation = () => {
-	const documents = useAppSelector((state) => state.document)
+	const {document} = useAppSelector((state) => state)
 
 	const dispatch = useAppDispatch()
 
@@ -19,7 +22,27 @@ const Documentation = () => {
 	}
 
 	// 初始化数据
-	useEffect(() => {}, [])
+	useEffect(() => {
+		 _fetch({ getDocuments: {}}).then(res => {
+				const { getDocuments } = res
+
+				getDocuments.success && fetchFiles(getDocuments.data).then(res => {
+					
+					const files = res.map((file, index) => ({
+						_id: index,
+						title: '',
+						context: file
+					}))
+
+					
+				dispatch(putDocuments(files))
+
+
+				})
+
+		 })
+
+	}, [document])
 
 	return (
 		<div className="flex-grow flex items-center flex-col">
@@ -55,11 +78,11 @@ const Documentation = () => {
 					</label>
 				</div>
 
-				{documents.length === 0 ? (
+				{document.length === 0 ? (
 					<Blank />
 				) : (
-					documents.map((document) => (
-						<DocumentIntroduction key={document._id} {...document} />
+					document.map((doc) => (
+						<DocumentIntroduction key={doc._id} {...doc} />
 					))
 				)}
 			</div>
