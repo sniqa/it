@@ -1,14 +1,12 @@
-interface WithId {
-	_id: string
-}
+import { WithId } from './common'
 
-interface Documentation {
+export interface Documentation {
 	title: string
 	content: string
 	introduction?: string
 	recycle?: boolean
-	createDate?: Date
-	lastModifyDate?: Date
+	createDate?: string
+	lastModifyDate?: string
 	author?: string
 }
 

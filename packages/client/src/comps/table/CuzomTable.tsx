@@ -11,6 +11,7 @@ const CuzomTable = ({ columns, rows }: CuzomTableProps) => {
 		<DataGrid
 			columns={columns}
 			rows={rows}
+			getRowId={(row) => row._id}
 			localeText={localeText}
 			components={{
 				Toolbar: GridToolbar,

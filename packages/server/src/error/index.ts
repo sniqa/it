@@ -56,6 +56,33 @@ export const EMPTY: ErrorRes = {
 	errMsg: 'EMPTY',
 }
 
+export const MODIFY_ERROR: ErrorRes = {
+	errCode: 908,
+	errMsg: 'MODIFY_ERROR',
+}
+
+export const IP_FORMAT_ERROR: ErrorRes = {
+	errCode: 909,
+	errMsg: 'IP_FORMAT_ERROR',
+}
+
+// 不在同一地址段not in the same address range
+export const NOT_IN_THE_SAME_ADDRESS_RANGE: ErrorRes = {
+	errCode: 909,
+	errMsg: 'NOT_IN_THE_SAME_ADDRESS_RANGE',
+}
+
+// 不存在的网络类型
+export const NET_TYPE_NOT_EXIST: ErrorRes = {
+	errCode: 910,
+	errMsg: 'NET_TYPE_NOT_EXIST',
+}
+
+// 不存在的ip地址
+export const IP_ADDRESS_NOT_EXIST: ErrorRes = {
+	errCode: 911,
+	errMsg: 'IP_ADDRESS_NOT_EXIST',
+}
 
 interface TrueRes<T> {
 	success: true
