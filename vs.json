@@ -1,0 +1,12 @@
+{
+	"editor.tabSize": 2,
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.wordWrapColumn": 120,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.enable": true,
+	"prettier.semi": false,
+	"prettier.singleQuote": true,
+	"prettier.printWidth": 120,
+	"prettier.tabWidth": 2
+}

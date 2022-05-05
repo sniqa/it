@@ -33,7 +33,7 @@ const UserTable = () => {
 					message: '删除用户成功',
 				})
 
-				setRows((rows) => rows.filter((oldRow) => oldRow._id != row._id))
+				setRows((oldRows) => oldRows.filter((oldRow) => oldRow._id != row._id))
 			} else {
 				setSnackbarStatus({
 					state: 'error',
