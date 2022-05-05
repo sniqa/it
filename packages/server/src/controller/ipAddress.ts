@@ -128,4 +128,8 @@ export const deleteIp = async () => {}
 
 export const modifyIp = async () => {}
 
-export const findIp = async () => {}
+export const findIp = async (data: Partial<IpAddressProps>) => {
+	const ips = await IpAddressModel.find(data).toArray()
+
+	return trueRes(ips)
+}
