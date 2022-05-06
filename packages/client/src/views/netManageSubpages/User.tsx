@@ -153,7 +153,7 @@ const UserTable = () => {
 
 				<Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
 					<div className="p-8 flex flex-col">
-						<Typography>创建用户</Typography>
+						<Typography className='text-blue-500'>创建用户</Typography>
 
 						{columns.map(
 							(column, index) =>

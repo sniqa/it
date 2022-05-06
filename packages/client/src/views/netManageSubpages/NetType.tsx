@@ -171,7 +171,7 @@ const NetTypeTable = () => {
 
 				<Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
 					<div className="p-8 flex flex-col">
-						<Typography>创建网络类型</Typography>
+						<Typography className='text-blue-500'>创建网络类型</Typography>
 
 						<div className="my-2 flex items-center">
 							<Typography className="min-w-6rem pr-2">网络类型</Typography>

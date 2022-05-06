@@ -6,6 +6,7 @@ import Header from './comps/common/Header'
 import Home from './views/Home'
 import About from './views/About'
 import NotFound from './views/NotFound'
+import Loading from './views/Loading'
 
 const Documentation = lazy(() => import('./views/Documentation'))
 const DocumentEditor = lazy(() => import('./views/Editor'))
@@ -31,7 +32,7 @@ const App = () => {
 					<Route
 						path={RoutePath.DOCUMENT}
 						element={
-							<Suspense fallback={<div>...Loading</div>}>
+							<Suspense fallback={<Loading />}>
 								<Documentation />
 							</Suspense>
 						}
@@ -40,7 +41,7 @@ const App = () => {
 					<Route
 						path={RoutePath.EDITOR}
 						element={
-							<Suspense fallback={<div>...Loading</div>}>
+							<Suspense fallback={<Loading />}>
 								<DocumentEditor />
 							</Suspense>
 						}
@@ -50,7 +51,7 @@ const App = () => {
 					<Route
 						path={RoutePath.NET_MANAGE}
 						element={
-							<Suspense fallback={<div>...Loading</div>}>
+							<Suspense fallback={<Loading />}>
 								<NetManage />
 							</Suspense>
 						}
@@ -58,7 +59,7 @@ const App = () => {
 						<Route
 							index
 							element={
-								<Suspense fallback={<div>...Loading</div>}>
+								<Suspense fallback={<Loading />}>
 									<User />
 								</Suspense>
 							}
@@ -66,7 +67,7 @@ const App = () => {
 						<Route
 							path={RoutePath.USER}
 							element={
-								<Suspense fallback={<div>...Loading</div>}>
+								<Suspense fallback={<Loading />}>
 									<User />
 								</Suspense>
 							}
@@ -74,7 +75,7 @@ const App = () => {
 						<Route
 							path={RoutePath.NET_TYPE}
 							element={
-								<Suspense fallback={<div>...Loading</div>}>
+								<Suspense fallback={<Loading />}>
 									<NetType />
 								</Suspense>
 							}
@@ -82,7 +83,7 @@ const App = () => {
 						<Route
 							path={RoutePath.IP}
 							element={
-								<Suspense fallback={<div>...Loading</div>}>
+								<Suspense fallback={<Loading />}>
 									<Ip />
 								</Suspense>
 							}
@@ -90,7 +91,7 @@ const App = () => {
 						<Route
 							path={RoutePath.PLAN}
 							element={
-								<Suspense fallback={<div>...Loading</div>}>
+								<Suspense fallback={<Loading />}>
 									<Plan />
 								</Suspense>
 							}
