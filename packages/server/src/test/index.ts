@@ -1,12 +1,9 @@
-import ip from 'ip';
-import { getDocuments } from '../controller/document'
+import { pingHost, pingHostRange } from '../controller/ping'
 
-const one = ip.toLong('192.168.1.1')
-const two = ip.toLong('192.168.2.54')
+const hosts: Array<string> = []
 
+for (let i = 194; i < 205; i++) {
+	hosts.push(`192.168.0.${i}`)
+}
 
-
-
-
-// assert.equal(res, data, 'fs')
-console.log(await getDocuments());
+console.log(await pingHostRange({ hosts }))
