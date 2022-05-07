@@ -1,41 +1,32 @@
-// import ping from 'ping'
-
-interface PingHostRange {
-	hosts: Array<string>
-}
-
 import ping from 'ping'
+import { NetTypeProps } from '@it/types'
+import { IpAddressModel } from './ipAddress'
+import { hasKeys } from '@it/share'
+import { falseRes, MISSING_PARAMS } from '../error'
 
-export const pingHost = async () => {
-	const hosts = ['192.168.1.1', '192.168.0.195']
+const pingHostRange = async (hosts: Array<string>) => {
+  const allHostInfo = await Promise.all(
+    hosts.map(async (host) => {
+      const res = await ping.promise.probe(host, {
+        timeout: 10,
+        extra: ['-i', '2'],
+      })
 
-	for (let host of hosts) {
-		// WARNING: -i 2 argument may not work in other platform like windows
-		let res = await ping.promise.probe(host, {
-			timeout: 10,
-			extra: ['-i', '2'],
-		})
-		console.log(res)
-	}
+      return { host: res.host, online: res.alive }
+    })
+  )
+
+  return allHostInfo.filter((host) => host.online)
 }
 
-export const pingHostRange = async (data: PingHostRange) => {
-	const { hosts } = data
+export const getHostsOnline = async (data: Partial<NetTypeProps>) => {
+  if (!hasKeys(data, 'netTypeName')) {
+    return falseRes(MISSING_PARAMS)
+  }
 
-	const allHostInfo = await Promise.all(
-		hosts.map(async (host) => {
-			const res = await ping.promise.probe(host, {
-				timeout: 10,
-				extra: ['-i', '2'],
-			})
+  const { netTypeName } = data
 
-			return { host: res.host, alive: res.alive }
-		})
-	)
+  const hosts = await (await IpAddressModel.find({ netTypeName }).toArray()).map((ip) => ip.ipAddress)
 
-	// console.log(allHostInfo)
-
-	return allHostInfo.filter((host) => host.alive)
-
-	// return res
+  return await pingHostRange(hosts)
 }

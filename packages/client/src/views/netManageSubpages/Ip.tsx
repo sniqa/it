@@ -220,7 +220,6 @@ const Ip = () => {
 
           if (findNetType) {
             const { success, data } = findNetType
-            console.log(data)
 
             success && setAllNetTypes(data), setCurrentNetType(data[0])
           }
@@ -249,6 +248,7 @@ const Ip = () => {
   return (
     <div className="h-full flex flex-col p-2">
       <section className="flex items-center flex-wrap pt-2 pb-4 px-4">
+        {/* 显示网络类型信息 */}
         <div className="h-full flex flex-wrap">
           <div className="flex items-center w-14rem">
             <Typography className="w-6rem">{`网络类型:`}</Typography>
@@ -256,7 +256,7 @@ const Ip = () => {
               size="small"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={currentNetType.netTypeName || ''}
+              value={currentNetType?.netTypeName || ''}
               onChange={(e) => {
                 const currnetNetTypeName = e.target.value || ''
 
@@ -277,45 +277,46 @@ const Ip = () => {
 
           <div className="w-14rem flex items-center">
             ip起始地址:
-            <span className="text-blue-700 px-2">{currentNetType.ipStartAddress}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.ipStartAddress || ''}</span>
           </div>
 
           <div className="w-14rem rounded flex items-center">
             ip结束地址:
-            <span className="text-blue-700 px-2">{currentNetType.ipEndAddress}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.ipEndAddress || ''}</span>
           </div>
           <div className="w-14rem flex items-center">
             子网掩码:
-            <span className="text-blue-700 px-2">{currentNetType.subnetMask}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.subnetMask || ''}</span>
           </div>
           <div className="w-14rem flex items-center">
             网关:
-            <span className="text-blue-700 px-2">{currentNetType.gateway}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.gateway || ''}</span>
           </div>
           <div className="w-14rem flex items-center">
             DNS1:
-            <span className="text-blue-700 px-2">{currentNetType.dns1}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.dns1 || ''}</span>
           </div>
           <div className="w-14rem flex items-center">
             DNS2:
-            <span className="text-blue-700 px-2">{currentNetType.dns2}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.dns2 || ''}</span>
           </div>
           <div className="w-14rem flex items-center">
             ip地址总个数:
-            <span className="text-blue-700 px-2">{currentNetType.ipAmount}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.ipAmount || 0}</span>
           </div>
 
           <div className="w-14rem flex items-center">
             已使用:
-            <span className="text-blue-700 px-2">{currentNetType.ipUsed}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.ipUsed || 0}</span>
           </div>
 
           <div className="w-14rem flex items-center">
             未使用:
-            <span className="text-blue-700 px-2">{currentNetType.ipUnUsed}</span>
+            <span className="text-blue-700 px-2">{currentNetType?.ipUnUsed || 0}</span>
           </div>
         </div>
 
+        {/* 弹出框 */}
         <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
           <div className="p-8 flex flex-col">
             <Typography className="text-blue-700 text-3rem">分配ip</Typography>
