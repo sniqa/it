@@ -15,6 +15,7 @@
 		"@mui/material": "^5.6.1",
 		"@mui/x-data-grid": "^5.9.0",
 		"@reduxjs/toolkit": "^1.8.1",
+		"echarts-for-react": "^3.0.2",
 		"i": "^0.3.7",
 		"md-editor-rt": "^1.6.9",
 		"mitt": "^3.0.0",
