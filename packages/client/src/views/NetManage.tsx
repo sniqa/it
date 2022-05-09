@@ -8,6 +8,7 @@ const subNav = [
 	{ title: '网络类型', to: RoutePath.NET_TYPE },
 	{ title: 'ip', to: RoutePath.IP },
 	{ title: '计划任务', to: RoutePath.PLAN },
+	{ title: '大屏', to: RoutePath.ECHARTS },
 ]
 
 const NetManage = () => {
@@ -17,12 +18,7 @@ const NetManage = () => {
 		<div className="flex-grow flex py-2 px-4">
 			<section className="border w-18rem h-full bg-light-50 rounded-2xl">
 				{subNav.map((nav) => (
-					<Button
-						fullWidth
-						sx={{ mb: '1rem' }}
-						onClick={() => navigate(nav.to)}
-						key={nav.title}
-					>
+					<Button fullWidth sx={{ mb: '1rem' }} onClick={() => navigate(nav.to)} key={nav.title}>
 						{nav.title}
 					</Button>
 				))}

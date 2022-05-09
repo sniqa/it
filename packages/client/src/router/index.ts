@@ -27,4 +27,7 @@ export enum RoutePath {
 
 	PLAN = 'plan',
 	ROOT_PLAN = '/plan',
+
+	ECHARTS = 'echarts',
+	ROOT_ECHARTS = '/echarts',
 }

@@ -16,15 +16,13 @@ const User = lazy(() => import('./views/netManageSubpages/User'))
 const NetType = lazy(() => import('./views/netManageSubpages/NetType'))
 const Ip = lazy(() => import('./views/netManageSubpages/Ip'))
 const Plan = lazy(() => import('./views/netManageSubpages/Plan'))
+const ECharts = lazy(() => import('./views/netManageSubpages/ECharts'))
 
 const App = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route
-					path={RoutePath.ROOT}
-					element={<TopContent header={<Header />} />}
-				>
+				<Route path={RoutePath.ROOT} element={<TopContent header={<Header />} />}>
 					<Route index element={<Navigate to={RoutePath.HOME} replace />} />
 					<Route path={RoutePath.HOME} element={<Home />} />
 					<Route path={RoutePath.ABOUT} element={<About />} />
@@ -93,6 +91,15 @@ const App = () => {
 							element={
 								<Suspense fallback={<Loading />}>
 									<Plan />
+								</Suspense>
+							}
+						/>
+
+						<Route
+							path={RoutePath.ECHARTS}
+							element={
+								<Suspense fallback={<Loading />}>
+									<ECharts />
 								</Suspense>
 							}
 						/>
